@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="AdminUpdateUserRoleEntityTest">
+        <annotations>
+            <features value="User"/>
+            <stories value="Update User Role"/>
+            <title value="Updating the created role according different data sets"/>
+            <description value="Updating the created role according to different data sets"/>
+            <group value="user"/>
+            <group value="mtf_migrated"/>
+        </annotations>
+
+        <before>
+            <actionGroup ref="LoginAsAdmin" stepKey="logIn"/>
+        </before>
+        <after>
+            <actionGroup ref="logout" stepKey="logOut"/>
+        </after>
+
+        <!--Create new user-->
+        <actionGroup ref="AdminOpenNewUserPageActionGroup" stepKey="goToNewUserPage"/>
+        <actionGroup ref="AdminFillNewUserFormRequiredFieldsActionGroup" stepKey="fillNewUserForm">
+            <argument name="user" value="NewAdminUser"/>
+        </actionGroup>
+        <actionGroup ref="AdminClickSaveButtonOnUserFormActionGroup" stepKey="saveNewUser"/>
+
+        <!--Create new role-->
+        <actionGroup ref="AdminOpenCreateRolePageActionGroup" stepKey="goToNewRolePage"/>
+        <actionGroup ref="AdminFillUserRoleFormActionGroup" stepKey="fillNewRoleForm">
+            <argument name="role" value="roleAdministrator"/>
+        </actionGroup>
+        <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewRole"/>
+
+        <!--Assign new role-->
+        <actionGroup ref="AdminOpenUserEditPageActionGroup" stepKey="openUserEditPage">
+            <argument name="user" value="NewAdminUser"/>
+        </actionGroup>
+        <actionGroup ref="AdminUpdateUserRoleActionGroup" stepKey="assignNewUserRole">
+            <argument name="role" value="roleAdministrator"/>
+        </actionGroup>
+        <actionGroup ref="AdminClickSaveButtonOnUserFormActionGroup" stepKey="saveUser"/>
+
+        <!--LogIn as admin user with new role-->
+        <actionGroup ref="logout" stepKey="logOutAsDefaultAdminUser"/>
+        <actionGroup ref="LoginAsAdmin" stepKey="loginAsNewUser">
+            <argument name="adminUser" value="NewAdminUser"/>
+        </actionGroup>
+
+        <!--Update the role-->
+        <actionGroup ref="AdminOpenRoleEditPageActionGroup" stepKey="openRoleEditPage">
+            <argument name="role" value="roleAdministrator"/>
+        </actionGroup>
+
+
+    </test>
+</tests>
