@@ -15,6 +15,7 @@
             <constraint name="Magento\User\Test\Constraint\AssertRoleInGrid" />
             <constraint name="Magento\User\Test\Constraint\AssertUserSuccessLogOut" />
             <constraint name="Magento\User\Test\Constraint\AssertUserSuccessLogin" />
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
         </variation>
         <variation name="UpdateAdminUserRoleEntityTestVariation2">
             <data name="user/dataset" xsi:type="string">default</data>
@@ -31,12 +32,14 @@
             <constraint name="Magento\User\Test\Constraint\AssertUserSuccessLogOut" />
             <constraint name="Magento\User\Test\Constraint\AssertUserSuccessLoginWithError"/>
             <constraint name="Magento\User\Test\Constraint\AssertUserRoleRestrictedAccessWithError" />
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
         </variation>
         <variation name="UpdateAdminUserRoleEntityTestVariation3">
             <data name="user/dataset" xsi:type="string">custom_admin_with_default_role</data>
             <data name="role/data/rolename" xsi:type="string">NewAdminRole%isolation%</data>
             <data name="role/data/current_password" xsi:type="string">incorrect password</data>
             <constraint name="Magento\User\Test\Constraint\AssertIncorrectUserPassword" />
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
         </variation>
     </testCase>
 </config>

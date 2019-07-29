@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminUpdateRoleNameActionGroup">
+        <arguments>
+            <argument name="roleName" type="string"/>
+            <argument name="currentAdminPassword" type="string" defaultValue="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
+        </arguments>
+        <fillField selector="{{AdminCreateRoleSection.name}}" userInput="{{roleName}}" stepKey="fillRoleName"/>
+        <fillField selector="{{AdminCreateRoleSection.password}}" userInput="{{currentAdminPassword}}" stepKey="fillCurrentUserPassword"/>
+    </actionGroup>
+</actionGroups>

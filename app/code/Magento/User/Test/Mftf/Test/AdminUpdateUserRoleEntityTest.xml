@@ -39,7 +39,7 @@
         </actionGroup>
         <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewRole"/>
 
-        <!--Assign new role-->
+       <!--Assign new role-->
         <actionGroup ref="AdminOpenUserEditPageActionGroup" stepKey="openUserEditPage">
             <argument name="user" value="NewAdminUser"/>
         </actionGroup>
@@ -54,11 +54,75 @@
             <argument name="adminUser" value="NewAdminUser"/>
         </actionGroup>
 
-        <!--Update the role-->
+        <!--Update the role name-->
         <actionGroup ref="AdminOpenRoleEditPageActionGroup" stepKey="openRoleEditPage">
             <argument name="role" value="roleAdministrator"/>
         </actionGroup>
+        <actionGroup ref="AdminUpdateRoleNameActionGroup" stepKey="enterNewRoleName">
+            <argument name="roleName" value="{{adminRole.name}}"/>
+            <argument name="currentAdminPassword" value="{{NewAdminUser.password}}"/>
+        </actionGroup>
+        <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewRoleName"/>
+        <actionGroup ref="AssertMessageInAdminPanelActionGroup" stepKey="assertSuccessMessageForSave">
+            <argument name="message" value="You saved the role."/>
+        </actionGroup>
+        <actionGroup ref="AssertRoleInGridActionGroup" stepKey="assertNewRoleNameInGrid">
+            <argument name="roleName" value="{{adminRole.name}}"/>
+        </actionGroup>
+        <actionGroup ref="logout" stepKey="logOutSecondTime"/>
+        <actionGroup ref="LoginAsAdmin" stepKey="logInThirdTime">
+            <argument name="adminUser" value="NewAdminUser"/>
+        </actionGroup>
+        <actionGroup ref="AssertAdminSuccessLoginActionGroup" stepKey="seeSuccessLoginMessage"/>
 
+        <!--Update the role resource access-->
+        <actionGroup ref="AdminOpenRoleEditPageActionGroup" stepKey="openRoleEditPageSecondTime">
+            <argument name="role" value="adminRole"/>
+        </actionGroup>
+        <actionGroup ref="AdminFillUserRoleFormActionGroup" stepKey="selectNewResourceAccess">
+            <argument name="role" value="restrictedRole"/>
+            <argument name="currentAdminPassword" value="{{NewAdminUser.password}}"/>
+        </actionGroup>
+        <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewResourceAccess"/>
+        <actionGroup ref="AssertMessageInAdminPanelActionGroup" stepKey="assertSuccessMessage">
+            <argument name="message" value="You saved the role."/>
+        </actionGroup>
+        <actionGroup ref="AssertRoleInGridActionGroup" stepKey="assertRoleInGrid">
+            <argument name="roleName" value="{{restrictedRole.name}}"/>
+        </actionGroup>
+        <actionGroup ref="logout" stepKey="logOutThirdTime"/>
+        <actionGroup ref="LoginAsAdmin" stepKey="logInFourthTime">
+            <argument name="adminUser" value="NewAdminUser"/>
+        </actionGroup>
+        <actionGroup ref="AssertAdminSuccessLoginActionGroup" stepKey="seeSuccessLoginMessageSecondTime"/>
+        <actionGroup ref="AdminOpenProductIndexPageActionGroup" stepKey="goToProductsPage"/>
+        <actionGroup ref="AssertUserRoleRestrictedAccessActionGroup" stepKey="assertAccessDeniedMessage"/>
+
+        <!--Update the role name using a wrong current admin password-->
+        <actionGroup ref="AdminOpenRoleEditPageActionGroup" stepKey="openRoleEditPageThirdTime">
+            <argument name="role" value="restrictedRole"/>
+        </actionGroup>
+        <actionGroup ref="AdminUpdateRoleNameActionGroup" stepKey="enterNewRoleNameThirdTime">
+            <argument name="roleName" value="{{adminRoleWithWrongPassword.name}}"/>
+            <argument name="currentAdminPassword" value="new_password"/>
+        </actionGroup>
+        <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewRoleNameThirdTime"/>
+        <actionGroup ref="AssertMessageInAdminPanelActionGroup" stepKey="assertErrorMessage">
+            <argument name="messageType" value="error"/>
+            <argument name="message" value="The password entered for the current user is invalid. Verify the password and try again."/>
+        </actionGroup>
+
+        <!--Delete new User-->
+        <actionGroup ref="logout" stepKey="logOutFourthTime"/>
+        <actionGroup ref="LoginAsAdmin" stepKey="loginAsDefaultAdminUser"/>
+        <actionGroup ref="AdminDeleteCustomUserActionGroup" stepKey="deleteNewUser">
+            <argument name="user" value="NewAdminUser"/>
+        </actionGroup>
+
+        <!--Delete new Role-->
+        <actionGroup ref="AdminDeleteUserRoleActionGroup" stepKey="deleteCustomRole">
+            <argument name="roleName" value="{{restrictedRole.name}}"/>
+        </actionGroup>
 
     </test>
 </tests>
