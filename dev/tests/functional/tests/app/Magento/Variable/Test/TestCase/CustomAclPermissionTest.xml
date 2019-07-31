@@ -12,6 +12,7 @@
             <data name="systemVariable/dataset" xsi:type="string">default</data>
             <data name="issue" xsi:type="string">MAGETWO-68854: CustomAclPermissionTest Fails on Jenkins, marked as unstable</data>
             <constraint name="Magento\Variable\Test\Constraint\AssertCustomVariableRestrictedAccess" />
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
         </variation>
     </testCase>
 </config>
