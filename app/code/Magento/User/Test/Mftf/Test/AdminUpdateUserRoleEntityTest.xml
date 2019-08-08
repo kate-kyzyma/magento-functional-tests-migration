@@ -66,7 +66,7 @@
         <actionGroup ref="AssertMessageInAdminPanelActionGroup" stepKey="assertSuccessMessageForSave">
             <argument name="message" value="You saved the role."/>
         </actionGroup>
-        <actionGroup ref="AssertRoleInGridActionGroup" stepKey="assertNewRoleNameInGrid">
+        <actionGroup ref="AssertAdminRoleInGridActionGroup" stepKey="assertNewRoleNameInGrid">
             <argument name="roleName" value="{{adminRole.name}}"/>
         </actionGroup>
         <actionGroup ref="logout" stepKey="logOutSecondTime"/>
@@ -80,15 +80,15 @@
             <argument name="role" value="adminRole"/>
         </actionGroup>
         <actionGroup ref="AdminFillUserRoleFormActionGroup" stepKey="selectNewResourceAccess">
-            <argument name="role" value="restrictedRole"/>
+            <argument name="role" value="roleSales"/>
             <argument name="currentAdminPassword" value="{{NewAdminUser.password}}"/>
         </actionGroup>
         <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewResourceAccess"/>
         <actionGroup ref="AssertMessageInAdminPanelActionGroup" stepKey="assertSuccessMessage">
             <argument name="message" value="You saved the role."/>
         </actionGroup>
-        <actionGroup ref="AssertRoleInGridActionGroup" stepKey="assertRoleInGrid">
-            <argument name="roleName" value="{{restrictedRole.name}}"/>
+        <actionGroup ref="AssertAdminRoleInGridActionGroup" stepKey="assertRoleInGrid">
+            <argument name="roleName" value="{{roleSales.name}}"/>
         </actionGroup>
         <actionGroup ref="logout" stepKey="logOutThirdTime"/>
         <actionGroup ref="LoginAsAdmin" stepKey="logInFourthTime">
@@ -96,15 +96,15 @@
         </actionGroup>
         <actionGroup ref="AssertAdminSuccessLoginActionGroup" stepKey="seeSuccessLoginMessageSecondTime"/>
         <actionGroup ref="AdminOpenProductIndexPageActionGroup" stepKey="goToProductsPage"/>
-        <actionGroup ref="AssertUserRoleRestrictedAccessActionGroup" stepKey="assertAccessDeniedMessage"/>
+        <actionGroup ref="AssertAdminUserRoleRestrictedAccessActionGroup" stepKey="assertAccessDeniedMessage"/>
 
         <!--Update the role name using a wrong current admin password-->
         <actionGroup ref="AdminOpenRoleEditPageActionGroup" stepKey="openRoleEditPageThirdTime">
-            <argument name="role" value="restrictedRole"/>
+            <argument name="role" value="roleSales"/>
         </actionGroup>
         <actionGroup ref="AdminUpdateRoleNameActionGroup" stepKey="enterNewRoleNameThirdTime">
-            <argument name="roleName" value="{{adminRoleWithWrongPassword.name}}"/>
-            <argument name="currentAdminPassword" value="new_password"/>
+            <argument name="roleName" value="{{roleAdministrator.name}}"/>
+            <argument name="currentAdminPassword" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}INVALID"/>
         </actionGroup>
         <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewRoleNameThirdTime"/>
         <actionGroup ref="AssertMessageInAdminPanelActionGroup" stepKey="assertErrorMessage">
@@ -121,7 +121,7 @@
 
         <!--Delete new Role-->
         <actionGroup ref="AdminDeleteUserRoleActionGroup" stepKey="deleteCustomRole">
-            <argument name="roleName" value="{{restrictedRole.name}}"/>
+            <argument name="roleName" value="{{roleSales.name}}"/>
         </actionGroup>
 
     </test>
