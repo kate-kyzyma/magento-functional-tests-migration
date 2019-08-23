@@ -30,6 +30,18 @@
         </before>
 
         <after>
+            <actionGroup ref="LoginAsAdmin" stepKey="LoginAdmin"/>
+
+            <!-- Delete users role -->
+            <actionGroup ref="AdminDeleteCreatedRoleActionGroup" stepKey="deleteRole">
+                <argument name="role" value="roleSales"/>
+            </actionGroup>
+
+            <!-- Delete User -->
+            <actionGroup ref="AdminDeleteUserViaCurlActionGroup" stepKey="deleteUser">
+                <argument name="user" value="$$user$$" />
+            </actionGroup>
+
             <actionGroup ref="logout" stepKey="logOut"/>
         </after>
 
@@ -114,17 +126,6 @@
             <argument name="message" value="The password entered for the current user is invalid. Verify the password and try again."/>
         </actionGroup>
 
-        <!--Delete new User-->
-        <actionGroup ref="logout" stepKey="logOutAsNewAdminUser"/>
-        <actionGroup ref="LoginAsAdmin" stepKey="loginAsDefaultAdminUser"/>
-        <actionGroup ref="AdminDeleteUserViaCurlActionGroup" stepKey="deleteUser">
-            <argument name="user" value="$$user$$" />
-        </actionGroup>
-
-        <!--Delete new Role-->
-        <actionGroup ref="AdminDeleteUserRoleActionGroup" stepKey="deleteCustomRole">
-            <argument name="roleName" value="{{roleSales.name}}"/>
-        </actionGroup>
-
+       <actionGroup ref="logout" stepKey="logOutAsNewAdminUser"/>
     </test>
 </tests>
