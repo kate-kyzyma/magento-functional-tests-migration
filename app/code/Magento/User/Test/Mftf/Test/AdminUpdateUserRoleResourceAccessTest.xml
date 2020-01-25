@@ -29,22 +29,6 @@
             <actionGroup ref="LoginAsAdmin" stepKey="logIn"/>
         </before>
 
-        <after>
-            <actionGroup ref="LoginAsAdmin" stepKey="LoginAdmin"/>
-
-            <!-- Delete users role -->
-            <actionGroup ref="AdminDeleteCreatedRoleActionGroup" stepKey="deleteRole">
-                <argument name="role" value="roleSales"/>
-            </actionGroup>
-
-            <!-- Delete User -->
-            <actionGroup ref="AdminDeleteUserViaCurlActionGroup" stepKey="deleteUser">
-                <argument name="user" value="$$user$$" />
-            </actionGroup>
-
-            <actionGroup ref="logout" stepKey="logOut"/>
-        </after>
-
         <!--Assign new role-->
         <actionGroup ref="AdminOpenUserEditPageActionGroup" stepKey="openUserEditPage">
             <argument name="user" value="$$user$$"/>
@@ -83,5 +67,21 @@
         <actionGroup ref="AssertAdminUserRoleRestrictedAccessActionGroup" stepKey="assertAccessDeniedMessage"/>
 
         <actionGroup ref="logout" stepKey="logOutAsNewAdminUser"/>
+
+        <after>
+            <actionGroup ref="LoginAsAdmin" stepKey="LoginAdmin"/>
+
+            <!-- Delete users role -->
+            <actionGroup ref="AdminDeleteCreatedRoleActionGroup" stepKey="deleteRole">
+                <argument name="role" value="roleSales"/>
+            </actionGroup>
+
+            <!-- Delete User -->
+            <actionGroup ref="AdminDeleteUserViaCurlActionGroup" stepKey="deleteUser">
+                <argument name="user" value="$$user$$" />
+            </actionGroup>
+
+            <actionGroup ref="logout" stepKey="logOut"/>
+        </after>
     </test>
 </tests>
