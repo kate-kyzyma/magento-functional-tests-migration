@@ -56,11 +56,6 @@ class LinkedProductSelectBuilderByCatalogRulePrice implements LinkedProductSelec
     private $baseSelectProcessor;
 
     /**
-     * @var \Magento\CatalogRule\Model\RuleDateFormatterInterface
-     */
-    private $ruleDateFormatter;
-
-    /**
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Framework\App\ResourceConnection $resourceConnection
      * @param \Magento\Customer\Model\Session $customerSession
@@ -68,7 +63,6 @@ class LinkedProductSelectBuilderByCatalogRulePrice implements LinkedProductSelec
      * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate
      * @param \Magento\Framework\EntityManager\MetadataPool $metadataPool
      * @param BaseSelectProcessorInterface $baseSelectProcessor
-     * @param \Magento\CatalogRule\Model\RuleDateFormatterInterface|null $ruleDateFormatter
      */
     public function __construct(
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -77,8 +71,7 @@ class LinkedProductSelectBuilderByCatalogRulePrice implements LinkedProductSelec
         \Magento\Framework\Stdlib\DateTime $dateTime,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
         \Magento\Framework\EntityManager\MetadataPool $metadataPool,
-        BaseSelectProcessorInterface $baseSelectProcessor = null,
-        \Magento\CatalogRule\Model\RuleDateFormatterInterface $ruleDateFormatter = null
+        BaseSelectProcessorInterface $baseSelectProcessor = null
     ) {
         $this->storeManager = $storeManager;
         $this->resource = $resourceConnection;
@@ -88,16 +81,14 @@ class LinkedProductSelectBuilderByCatalogRulePrice implements LinkedProductSelec
         $this->metadataPool = $metadataPool;
         $this->baseSelectProcessor = (null !== $baseSelectProcessor)
             ? $baseSelectProcessor : ObjectManager::getInstance()->get(BaseSelectProcessorInterface::class);
-        $this->ruleDateFormatter = $ruleDateFormatter ?: ObjectManager::getInstance()
-            ->get(\Magento\CatalogRule\Model\RuleDateFormatterInterface::class);
     }
 
     /**
      * @inheritdoc
      */
-    public function build($productId)
+    public function build(int $productId, int $storeId) : array
     {
-        $timestamp = $this->ruleDateFormatter->getTimeStamp($this->storeManager->getStore());
+        $timestamp = $this->localeDate->scopeTimeStamp($this->storeManager->getStore($storeId));
         $currentDate = $this->dateTime->formatDate($timestamp, false);
         $linkField = $this->metadataPool->getMetadata(ProductInterface::class)->getLinkField();
         $productTable = $this->resource->getTableName('catalog_product_entity');
@@ -117,7 +108,7 @@ class LinkedProductSelectBuilderByCatalogRulePrice implements LinkedProductSelec
                 sprintf('t.product_id = %s.%s', BaseSelectProcessorInterface::PRODUCT_TABLE_ALIAS, $linkField),
                 []
             )->where('parent.entity_id = ?', $productId)
-            ->where('t.website_id = ?', $this->storeManager->getStore()->getWebsiteId())
+            ->where('t.website_id = ?', $this->storeManager->getStore($storeId)->getWebsiteId())
             ->where('t.customer_group_id = ?', $this->customerSession->getCustomerGroupId())
             ->where('t.rule_date = ?', $currentDate)
             ->order('t.rule_price ' . Select::SQL_ASC)
