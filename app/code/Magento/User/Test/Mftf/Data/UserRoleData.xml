@@ -103,4 +103,28 @@
     <entity name="genericAdminRole" type="role">
         <data key="name">Administrators</data>
     </entity>
+    <entity name="adminWithoutVariableRole" type="user_role">
+        <data key="name" unique="suffix">restrictedVariableRole</data>
+        <data key="rolename" unique="suffix">restrictedVariableRole</data>
+        <data key="current_password">{{_ENV.MAGENTO_ADMIN_PASSWORD}}</data>
+        <data key="all">0</data>
+        <data key="gws_is_all">0</data>
+        <array key="gws_websites">
+            <item>1</item>
+        </array>
+        <array key="resource">
+            <item>Magento_Backend::content</item>
+            <item>Magento_Backend::content_elements</item>
+            <item>Magento_Cms::page</item>
+            <item>Magento_Cms::save</item>
+            <item>Magento_Cms::page_delete</item>
+            <item>Magento_Cms::block</item>
+            <item>Magento_Widget::widget_instance</item>
+            <item>Magento_Cms::media_gallery</item>
+            <item>Magento_Backend::design</item>
+            <item>Magento_Theme::theme</item>
+            <item>Magento_Backend::schedule</item>
+        </array>
+    </entity>
+
 </entities>

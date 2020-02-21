@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="AdminPressInsertVariableButtonActionGroup">
+        <annotations>
+            <description>Press "Insert Variable..." Button in Content section on CMS page</description>
+        </annotations>
+
+        <click selector="{{CmsNewPagePageActionsSection.insertVariable}}" stepKey="clickOnInsertVariableButton"/>
+        <waitForPageLoad stepKey="waitForPageLoadAfterClickOnInsertVariableButton"/>
+        <waitForElementVisible selector="{{VariableSection.VariableTitle}}"  stepKey="waitForInsertVariableTitle"/>
+    </actionGroup>
+</actionGroups>

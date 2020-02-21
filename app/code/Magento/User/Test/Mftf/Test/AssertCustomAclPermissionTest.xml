@@ -8,59 +8,57 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="AssertCustomAclPermissionTest">
+    <test name="AssertAdminCustomAclPermissionTest">
         <annotations>
             <features value="User"/>
-            <stories value="Create custom admin user with custom role"/>
-            <title value="Change full access role for admin user to custom one and assert restricted access"/>
-            <description value="Change full access role for admin user to custom one and assert restricted access"/>
+            <stories value="Assert Custom Variable Restricted Access"/>
+            <title value="Check that access to variables block on CMS page in admin panel is restricted"/>
+            <description value="Check that access to variables block on CMS page in admin panel is restricted"/>
             <group value="user"/>
             <group value="mtf_migrated"/>
         </annotations>
 
         <before>
+            <executeJS function="return '{{DefaultAdminUser.password}}'" stepKey="adminPassword" />
+            <createData entity="NewAdminUser" stepKey="user">
+                <field key="current_password">{$adminPassword}</field>
+            </createData>
+            <createData entity="adminWithoutVariableRole" stepKey="user_role">
+                <field key="current_password">{$adminPassword}</field>
+            </createData>
             <actionGroup ref="LoginAsAdmin" stepKey="logIn"/>
         </before>
         <after>
+            <actionGroup ref="LoginAsAdmin" stepKey="LoginAdmin"/>
+            <actionGroup ref="AdminDeleteRoleByRoleNameActionGroup" stepKey="deleteRole">
+                <argument name="role" value="$$user_role$$"/>
+            </actionGroup>
+            <actionGroup ref="AdminDeleteUserViaCurlActionGroup" stepKey="deleteUser">
+                <argument name="user" value="$$user$$" />
+            </actionGroup>
             <actionGroup ref="logout" stepKey="logOut"/>
         </after>
 
-        <!--Create new role-->
-        <actionGroup ref="AdminOpenCreateRolePageActionGroup" stepKey="goToNewRolePage"/>
-        <actionGroup ref="AdminFillUserRoleFormActionGroup" stepKey="fillNewRoleForm">
-            <argument name="role" value="roleSales"/>
+        <!--Assign new role-->
+        <actionGroup ref="AdminOpenUserEditPageActionGroup" stepKey="openUserEditPage">
+            <argument name="user" value="$$user$$"/>
         </actionGroup>
-        <actionGroup ref="AdminClickSaveButtonOnUserRoleFormActionGroup" stepKey="saveNewRole"/>
-
-        <!--Create new user-->
-        <actionGroup ref="AdminCreateUserActionGroup" stepKey="createNewAdminUser">
-            <argument name="role" value="roleSales"/>
-            <argument name="User" value="admin2"/>
+        <actionGroup ref="AdminUpdateUserRoleUsingCustomAdminPasswordActionGroup" stepKey="assignNewUserRole">
+            <argument name="roleName" value="$$user_role.rolename$$"/>
         </actionGroup>
+        <actionGroup ref="AdminClickSaveButtonOnUserFormActionGroup" stepKey="saveUser"/>
 
-        <!--Login as newly created user-->
-        <actionGroup ref="logout" stepKey="logoutAsDefaultUser"/>
+        <!--LogIn as admin user with new role-->
+        <actionGroup ref="logout" stepKey="logOutAsDefaultAdminUser"/>
         <actionGroup ref="LoginAsAdmin" stepKey="loginAsNewUser">
-            <argument name="adminUser" value="admin2"/>
+            <argument name="adminUser" value="$$user$$"/>
         </actionGroup>
 
         <!--Assert Custom Restricted Access-->
-        <actionGroup ref="AdminOpenProductIndexPageActionGroup" stepKey="navigateToProductsGrid"/>
-        <actionGroup ref="AssertUserRoleRestrictedAccessActionGroup" stepKey="seeErrorMessage"/>
-
-        <!--Login as default admin user-->
-        <actionGroup ref="logout" stepKey="logoutAsSaleRoleUser"/>
-        <actionGroup ref="LoginAsAdmin" stepKey="loginAsDefaultAdminUser"/>
-
-        <!--Delete new User-->
-        <actionGroup ref="AdminDeleteCustomUserActionGroup" stepKey="deleteNewUser">
-            <argument name="user" value="admin2"/>
-        </actionGroup>
-
-        <!--Delete new Role-->
-        <actionGroup ref="AdminDeleteUserRoleActionGroup" stepKey="deleteCustomRole">
-            <argument name="roleName" value="{{roleSales.name}}"/>
-        </actionGroup>
-
+        <actionGroup ref="AdminOpenCreateNewCMSPageActionGroup" stepKey="openNewCmsPage"/>
+        <actionGroup ref="AdminExpandContentSectionOnCmsPageActionGroup" stepKey="openContentSection"/>
+        <actionGroup ref="AdminPressInsertVariableButtonActionGroup" stepKey="pressInsertVariableButton"/>
+        <!--<actionGroup ref="AssertAdminCustomVariableRestrictedAccessActionGroup" stepKey="seeErrorMessage"/>-->
+        <actionGroup ref="logout" stepKey="logOut"/>
     </test>
 </tests>
