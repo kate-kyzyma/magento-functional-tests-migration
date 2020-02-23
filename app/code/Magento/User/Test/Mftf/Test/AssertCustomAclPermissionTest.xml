@@ -31,7 +31,7 @@
         <after>
             <actionGroup ref="LoginAsAdmin" stepKey="LoginAdmin"/>
             <actionGroup ref="AdminDeleteRoleByRoleNameActionGroup" stepKey="deleteRole">
-                <argument name="role" value="$$user_role$$"/>
+                <argument name="role" value="adminWithoutVariableRole"/>
             </actionGroup>
             <actionGroup ref="AdminDeleteUserViaCurlActionGroup" stepKey="deleteUser">
                 <argument name="user" value="$$user$$" />
