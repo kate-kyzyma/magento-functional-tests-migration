@@ -58,7 +58,7 @@
         <actionGroup ref="AdminOpenCreateNewCMSPageActionGroup" stepKey="openNewCmsPage"/>
         <actionGroup ref="AdminExpandContentSectionOnCmsPageActionGroup" stepKey="openContentSection"/>
         <actionGroup ref="AdminPressInsertVariableButtonActionGroup" stepKey="pressInsertVariableButton"/>
-        <!--<actionGroup ref="AssertAdminCustomVariableRestrictedAccessActionGroup" stepKey="seeErrorMessage"/>-->
+        <actionGroup ref="AssertAdminCustomVariableRestrictedAccessActionGroup" stepKey="seeErrorMessage"/>
         <actionGroup ref="logout" stepKey="logOut"/>
     </test>
 </tests>
