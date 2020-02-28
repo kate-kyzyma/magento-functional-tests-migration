@@ -14,5 +14,6 @@
         <element name="endpoint" type="input" selector="#integration_properties_endpoint"/>
         <element name="linkUrl" type="input" selector="#integration_properties_identity_link_url"/>
         <element name="save" type="button" selector=".page-actions-buttons .save"/>
+        <element name="email" type="input" selector="#integration_properties_email"/>
     </section>
 </sections>
