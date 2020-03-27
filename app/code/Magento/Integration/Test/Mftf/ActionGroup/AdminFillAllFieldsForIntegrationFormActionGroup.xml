@@ -8,12 +8,10 @@
 
 <actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
-    <actionGroup name="AdminFillAllFieldsForIntegrationFormActionGroup">
+    <actionGroup name="AdminFillAllFieldsForIntegrationFormActionGroup" extends="AdminCreatesNewIntegrationActionGroup">
         <arguments>
             <argument name="integration" type="entity"/>
         </arguments>
-        <fillField stepKey="fillNameField" selector="{{AdminNewIntegrationSection.name}}" userInput="{{integration.name}}"/>
-        <fillField stepKey="fillAdminPasswordField" selector="{{AdminNewIntegrationSection.password}}" userInput="{{integration.password}}"/>
         <fillField selector="{{AdminNewIntegrationSection.email}}" userInput="{{integration.email}}" stepKey="fillEmailField"/>
         <fillField selector="{{AdminNewIntegrationSection.endpoint}}" userInput="{{integration.endpoint}}" stepKey="fillCallbackURLField"/>
         <fillField selector="{{AdminNewIntegrationSection.linkUrl}}" userInput="{{integration.linkUrl}}" stepKey="fillIdentityLinkURLField"/>

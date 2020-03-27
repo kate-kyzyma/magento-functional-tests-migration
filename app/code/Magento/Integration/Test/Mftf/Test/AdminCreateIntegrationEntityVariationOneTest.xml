@@ -25,11 +25,14 @@
         </after>
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
-        <actionGroup ref="AdminNavigateToCreateIntegrationPageActionGroup" stepKey="clickAddNewIntegrationButton"/>
-        <actionGroup ref="AdminFillAllFieldsForIntegrationFormActionGroup" stepKey="createIntegration">
+        <actionGroup ref="AdminFillAllFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
             <argument name="integration" value="newIntegration"/>
+            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
+        <!-- Assert Success Message -->
+        <actionGroup ref="AssertAdminMessageCreateIntegrationEntityActionGroup" stepKey="seeSuccessSaveMessage"/>
 
     </test>
 </tests>
