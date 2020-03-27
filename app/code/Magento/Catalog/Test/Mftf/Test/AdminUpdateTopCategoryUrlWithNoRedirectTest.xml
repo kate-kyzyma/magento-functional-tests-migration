@@ -13,7 +13,7 @@
             <title value="Update top category url and do not create redirect"/>
             <description value="Login as admin and update top category url and do not create redirect"/>
             <testCaseId value="MC-6056"/>
-            <severity value="CRITICAL"/>
+            <severity value="BLOCKER"/>
             <group value="Catalog"/>
             <group value="mtf_migrated"/>
         </annotations>
@@ -32,7 +32,7 @@
             <actionGroup ref="LoginAsAdmin" stepKey="login"/>
         </before>
         <after>
-            <actionGroup ref="logout" stepKey="logout"/>
+            <actionGroup ref="AdminLogoutActionGroup" stepKey="logout"/>
 
             <deleteData createDataKey="createThreeLevelNestedCategories" stepKey="deleteThreeNestedCategories"/>
             <deleteData createDataKey="createTwoLevelNestedCategories" stepKey="deleteTwoLevelNestedCategory"/>

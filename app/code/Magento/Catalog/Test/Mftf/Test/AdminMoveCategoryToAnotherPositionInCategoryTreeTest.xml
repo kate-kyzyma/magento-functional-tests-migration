@@ -14,7 +14,7 @@
             <title value="Move Category to Another Position in Category Tree"/>
             <description value="Test log in to Move Category and Move Category to Another Position in Category Tree"/>
             <testCaseId value="MC-13612"/>
-            <severity value="CRITICAL"/>
+            <severity value="BLOCKER"/>
             <group value="catalog"/>
             <group value="mtf_migrated"/>
         </annotations>
@@ -28,7 +28,7 @@
             <actionGroup ref="DeleteCategoryActionGroup" stepKey="SecondLevelSubCat">
                 <argument name="categoryEntity" value="SecondLevelSubCat"/>
             </actionGroup>
-            <actionGroup ref="logout" stepKey="logout"/>
+            <actionGroup ref="AdminLogoutActionGroup" stepKey="logout"/>
         </after>
 
         <!-- Open Category Page -->
