@@ -31,7 +31,20 @@
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
+
         <!-- Assert Success Message -->
+        <actionGroup ref="AssertAdminMessageCreateIntegrationEntityActionGroup" stepKey="seeSuccessMessage">
+            <argument name="message" value="The integration '{{newIntegration.name}}' has been saved."/>
+            <argument name="messageType" value="success"/>
+        </actionGroup>
+
+        <!-- Assert Integration In Grid -->
+        <actionGroup ref="AdminSearchIntegrationInGridActionGroup" stepKey="findTheIntegration">
+            <argument name="name" value="{{newIntegration.name}}"/>
+        </actionGroup>
+        <actionGroup ref="AssertUpdatedIntegrationEntityInGridActionGroup" stepKey="seeIntegrationEntity">
+            <argument name="name" value="{{newIntegration.name}}"/>
+        </actionGroup>
 
     </test>
 </tests>
