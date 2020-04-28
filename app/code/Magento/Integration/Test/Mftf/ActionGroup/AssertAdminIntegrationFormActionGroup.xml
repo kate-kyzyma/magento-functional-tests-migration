@@ -11,9 +11,9 @@
     <actionGroup name="AssertAdminIntegrationFormActionGroup">
         <arguments>
             <argument name="name" type="string"/>
-            <argument name="email" type="string" defaultValue=" "/>
-            <argument name="endpoint" type="string" defaultValue=" "/>
-            <argument name="linkUrl" type="string" defaultValue=" "/>
+            <argument name="email" type="string" defaultValue=""/>
+            <argument name="endpoint" type="string" defaultValue=""/>
+            <argument name="linkUrl" type="string" defaultValue=""/>
             <argument name="resourceAccess" type="string" defaultValue="All"/>
             <!--<argument name="resources" type="string"/>-->
         </arguments>
