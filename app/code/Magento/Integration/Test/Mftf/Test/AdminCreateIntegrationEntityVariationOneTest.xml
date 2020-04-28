@@ -46,5 +46,14 @@
             <argument name="name" value="{{newIntegration.name}}"/>
         </actionGroup>
 
+        <!-- Assert Integration Form -->
+        <actionGroup ref="AdminClickEditIntegrationEntityActionGroup" stepKey="clickEditButton"/>
+        <actionGroup ref="AssertAdminIntegrationFormActionGroup" stepKey="asserIntegrationForm">
+            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="email" value="{{newIntegration.email}}"/>
+            <argument name="endpoint" value="{{newIntegration.endpoint}}"/>
+            <argument name="linkUrl" value="{{newIntegration.linkUrl}}"/>
+        </actionGroup>
+
     </test>
 </tests>
