@@ -22,5 +22,6 @@
         <element name="accessToken" type="input" selector=".admin__field-control.control #integration_token_token"/>
         <element name="accessTokenSecret" type="input" selector=".admin__field-control.control #integration_token_token_secret"/>
         <element name="email" type="input" selector="#integration_properties_email"/>
+        <element name="validationMessage" type="block" selector="#integration_properties_endpoint-error"/>
     </section>
 </sections>

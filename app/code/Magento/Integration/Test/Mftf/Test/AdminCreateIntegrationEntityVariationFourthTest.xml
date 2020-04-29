@@ -33,9 +33,10 @@
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 
         <!-- Assert Url Validation Error Generated -->
+        <actionGroup ref="AssertAdminUrlValidationErrorGeneratedActionGroup" stepKey="assertValidationErrorMessage"/>
 
         <!-- Assert Success Save Message Not Present -->
-
+        <actionGroup ref="AssertAdminIntegrationSuccessSaveMessageNotPresentActionGroup" stepKey="dontSeeSuccessSaveMessage"/>
 
     </test>
 </tests>
