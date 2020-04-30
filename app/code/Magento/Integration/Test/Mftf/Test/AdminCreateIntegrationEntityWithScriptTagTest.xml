@@ -8,12 +8,12 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="AdminCreateIntegrationEntityWithDoubleQuoteTest">
+    <test name="AdminCreateIntegrationEntityWithScriptTagTest">
         <annotations>
             <features value="Integration"/>
-            <stories value="System Integration with double quote"/>
-            <title value="Admin system integration with double quote"/>
-            <description value="Admin Create Integration with double quote"/>
+            <stories value="System Integration with script tag"/>
+            <title value="Admin system integration with script tag"/>
+            <description value="Admin Create Integration with script tag"/>
             <group value="integration"/>
             <group value="mtf_migrated"/>
         </annotations>
@@ -26,11 +26,11 @@
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
         <actionGroup ref="AdminFillExtraFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="name" value="name-'{{defaultIntegrationData.name}}' &quot; OR &quot;a&quot;=&quot;a"/>
+            <argument name="name" value="&lt;script&gt;alert(&apos;XSS-'{{defaultIntegrationData.name}}'&apos;)&lt;/script&gt;"/>
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
             <argument name="email" value="-"/>
-            <argument name="endpoint" value="endpoint&quot; OR &quot;a&quot;=&quot;a"/>
-            <argument name="linkUrl" value="linkURL&quot; OR &quot;a&quot;=&quot;a"/>
+            <argument name="endpoint" value="&lt;script&gt;alert(&apos;XSS&apos;)&lt;/script&gt;"/>
+            <argument name="linkUrl" value="&lt;script&gt;alert(&apos;XSS&apos;)&lt;/script&gt;"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 

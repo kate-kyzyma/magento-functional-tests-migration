@@ -8,20 +8,18 @@
 
 <actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
-    <actionGroup name="AssertAdminIntegrationFormActionGroup">
+    <actionGroup name="AdminFillExtraFieldsForIntegrationFormActionGroup" extends="AdminCreatesNewIntegrationActionGroup">
         <arguments>
-            <argument name="name" type="string"/>
             <argument name="email" type="string" defaultValue=""/>
             <argument name="endpoint" type="string" defaultValue=""/>
             <argument name="linkUrl" type="string" defaultValue=""/>
             <argument name="resourceAccess" type="string" defaultValue="All"/>
         </arguments>
-        <seeInField selector="{{AdminNewIntegrationSection.name}}" userInput="{{name}}" stepKey="seeName"/>
-        <seeInField selector="{{AdminNewIntegrationSection.email}}" userInput="{{email}}" stepKey="seeEmail"/>
-        <seeInField selector="{{AdminNewIntegrationSection.endpoint}}" userInput="{{endpoint}}" stepKey="seeEndpoint"/>
-        <seeInField selector="{{AdminNewIntegrationSection.linkUrl}}" userInput="{{linkUrl}}" stepKey="seeLinkUrl"/>
+        <fillField selector="{{AdminNewIntegrationSection.email}}" userInput="{{email}}" stepKey="fillEmailField"/>
+        <fillField selector="{{AdminNewIntegrationSection.endpoint}}" userInput="{{endpoint}}" stepKey="fillCallbackURLField"/>
+        <fillField selector="{{AdminNewIntegrationSection.linkUrl}}" userInput="{{linkUrl}}" stepKey="fillIdentityLinkURLField"/>
         <click selector="{{AdminNewIntegrationFormSection.apiTab}}" stepKey="clickToOpenApiTab"/>
         <waitForPageLoad stepKey="waitForApiTab"/>
-        <seeInField selector="{{AdminNewIntegrationFormSection.resourceAccess}}" userInput="{{resourceAccess}}" stepKey="seeResourceAccess"/>
+        <selectOption selector="{{AdminNewIntegrationFormSection.resourceAccess}}" userInput="{{resourceAccess}}" stepKey="selectResourceAccess" />
     </actionGroup>
 </actionGroups>

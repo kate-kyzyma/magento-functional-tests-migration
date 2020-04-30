@@ -5,11 +5,10 @@
   * See COPYING.txt for license details.
   */
 -->
-
 <actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
-    <actionGroup name="AdminPressBackButtonOnIntegrationPageActionGroup">
-        <click selector="{{AdminNewIntegrationSection.backButton}}" stepKey="clickBackButton" />
+    <actionGroup name="AdminOpenIntegrationGridPageActionGroup">
+        <amOnPage url="{{AdminIntegrationGridPage.url}}" stepKey="goToIntegrationGridPage"/>
         <waitForPageLoad stepKey="waitForPageLoad"/>
     </actionGroup>
 </actionGroups>

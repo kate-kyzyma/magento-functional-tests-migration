@@ -25,15 +25,17 @@
         </after>
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
-        <actionGroup ref="AdminFillAllFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="integration" value="IntegrationWithJavascriptTag"/>
-            <argument name="name" value="{{IntegrationWithJavascriptTag.name}}"/>
+        <actionGroup ref="AdminFillExtraFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
+            <argument name="name" value="&lt;IMG SRC=javascript:alert(&apos;XSS-'{{defaultIntegrationData.name}}'&apos;)&gt;"/>
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
+            <argument name="email" value="-"/>
+            <argument name="endpoint" value="&lt;IMG SRC=javascript:alert(&apos;XSS&apos;)&gt;"/>
+            <argument name="linkUrl" value="&lt;IMG SRC=javascript:alert(&apos;XSS&apos;)&gt;"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 
         <!-- Assert Url Validation Error Generated -->
-        <actionGroup ref="AssertAdminUrlValidationErrorGeneratedActionGroup" stepKey="assertValidationErrorMessage"/>
+        <actionGroup ref="AssertAdminValidationErrorGeneratedActionGroup" stepKey="assertValidationErrorMessage"/>
 
         <!-- Assert Success Save Message Not Present -->
         <actionGroup ref="AssertAdminIntegrationSuccessSaveMessageNotPresentActionGroup" stepKey="dontSeeSuccessSaveMessage"/>

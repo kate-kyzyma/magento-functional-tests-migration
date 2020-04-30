@@ -25,10 +25,12 @@
         </after>
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
-        <actionGroup ref="AdminFillAllFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="integration" value="integrationWithAllResourceAccess"/>
+        <actionGroup ref="AdminFillExtraFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
             <argument name="name" value="{{integrationWithAllResourceAccess.name}}"/>
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
+            <argument name="email" value="{{integrationWithAllResourceAccess.email}}"/>
+            <argument name="endpoint" value="{{integrationWithAllResourceAccess.endpoint}}"/>
+            <argument name="linkUrl" value="{{integrationWithAllResourceAccess.linkUrl}}"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 
@@ -56,7 +58,7 @@
         </actionGroup>
 
         <!-- Back to the grid -->
-        <actionGroup ref="AdminPressBackButtonOnIntegrationPageActionGroup" stepKey="backToTheGrid"/>
+        <actionGroup ref="AdminOpenIntegrationGridPageActionGroup" stepKey="goToIntegrationGrid"/>
 
         <!-- Delete Created Integration Entity -->
         <actionGroup ref="AdminSearchIntegrationInGridActionGroup" stepKey="searchTheIntegration">

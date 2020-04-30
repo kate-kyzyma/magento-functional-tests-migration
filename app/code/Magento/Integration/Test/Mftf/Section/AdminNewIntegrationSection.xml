@@ -11,7 +11,6 @@
         <element name="name" type="input" selector="#integration_properties_name"/>
         <element name="password" type="input" selector="#integration_properties_current_password"/>
         <element name="saveButton" type="button" selector=".page-actions #save-split-button-button"/>
-        <element name="backButton" type="button" selector=".page-actions #back"/>
         <element name="endpoint" type="input" selector="#integration_properties_endpoint"/>
         <element name="linkUrl" type="input" selector="#integration_properties_identity_link_url"/>
         <element name="save" type="button" selector=".page-actions-buttons .save"/>
@@ -22,6 +21,6 @@
         <element name="accessToken" type="input" selector=".admin__field-control.control #integration_token_token"/>
         <element name="accessTokenSecret" type="input" selector=".admin__field-control.control #integration_token_token_secret"/>
         <element name="email" type="input" selector="#integration_properties_email"/>
-        <element name="validationMessage" type="block" selector="#integration_properties_endpoint-error"/>
+        <element name="validationErrorMessage" type="block" selector="#integration_properties_{{messageType}}-error" parameterized="true"/>
     </section>
 </sections>

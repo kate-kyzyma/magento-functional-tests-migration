@@ -8,11 +8,12 @@
 
 <actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
-    <actionGroup name="AssertAdminUrlValidationErrorGeneratedActionGroup">
+    <actionGroup name="AssertAdminValidationErrorGeneratedActionGroup">
         <arguments>
             <argument name="message" type="string" defaultValue="Please enter a valid URL. Protocol is required (http://, https:// or ftp://)."/>
+            <argument name="messageType" type="string" defaultValue="endpoint"/>
         </arguments>
-        <waitForElementVisible selector="{{AdminNewIntegrationSection.validationMessage}}" stepKey="waitForMessage"/>
-        <see selector="{{AdminNewIntegrationSection.validationMessage}}" userInput="{{message}}" stepKey="verifyMessage"/>
+        <waitForElementVisible selector="{{AdminNewIntegrationSection.validationErrorMessage((messageType))}}" stepKey="waitForMessage"/>
+        <see selector="{{AdminNewIntegrationSection.validationErrorMessage((messageType))}}" userInput="{{message}}" stepKey="verifyMessage"/>
     </actionGroup>
 </actionGroups>

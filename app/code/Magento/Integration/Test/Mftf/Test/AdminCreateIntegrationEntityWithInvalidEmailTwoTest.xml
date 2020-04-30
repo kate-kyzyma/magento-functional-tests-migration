@@ -8,12 +8,12 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="AdminCreateIntegrationEntityWithDoubleQuoteTest">
+    <test name="AdminCreateIntegrationEntityWithInvalidEmailTwoTest">
         <annotations>
             <features value="Integration"/>
-            <stories value="System Integration with double quote"/>
-            <title value="Admin system integration with double quote"/>
-            <description value="Admin Create Integration with double quote"/>
+            <stories value="System Integration with invalid email with two dots"/>
+            <title value="System Integration with invalid email with two dots"/>
+            <description value="Admin Create Integration with invalid email"/>
             <group value="integration"/>
             <group value="mtf_migrated"/>
         </annotations>
@@ -26,16 +26,19 @@
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
         <actionGroup ref="AdminFillExtraFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="name" value="name-'{{defaultIntegrationData.name}}' &quot; OR &quot;a&quot;=&quot;a"/>
+            <argument name="name" value="{{defaultIntegrationData.name}}"/>
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
-            <argument name="email" value="-"/>
-            <argument name="endpoint" value="endpoint&quot; OR &quot;a&quot;=&quot;a"/>
-            <argument name="linkUrl" value="linkURL&quot; OR &quot;a&quot;=&quot;a"/>
+            <argument name="email" value="abc.@example.com"/>
+            <argument name="endpoint" value="https://endpoint.com"/>
+            <argument name="linkUrl" value="https://testlink.com"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 
-        <!-- Assert Url Validation Error Generated -->
-        <actionGroup ref="AssertAdminValidationErrorGeneratedActionGroup" stepKey="assertValidationErrorMessage"/>
+        <!-- Assert Email Validation Error Generated -->
+        <actionGroup ref="AssertAdminValidationErrorGeneratedActionGroup" stepKey="assertValidationErrorMessage">
+            <argument name="message" value="Please enter a valid email address (Ex: johndoe@domain.com)."/>
+            <argument name="messageType" value="email"/>
+        </actionGroup>
 
         <!-- Assert Success Save Message Not Present -->
         <actionGroup ref="AssertAdminIntegrationSuccessSaveMessageNotPresentActionGroup" stepKey="dontSeeSuccessSaveMessage"/>

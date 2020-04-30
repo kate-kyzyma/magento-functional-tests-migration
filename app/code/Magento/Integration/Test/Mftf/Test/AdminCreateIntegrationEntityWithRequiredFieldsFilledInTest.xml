@@ -8,12 +8,12 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="AdminCreateIntegrationEntityVariationThreeTest">
+    <test name="AdminCreateIntegrationEntityWithRequiredFieldsFilledInTest">
         <annotations>
             <features value="Integration"/>
-            <stories value="System Integration Variation Three"/>
-            <title value="Admin system integration Variation Three"/>
-            <description value="Admin Create Integration"/>
+            <stories value="System Integration with required fields filled in"/>
+            <title value="Admin system integration with required fields filled in"/>
+            <description value="Admin Create Integration with required fields filled in"/>
             <group value="integration"/>
             <group value="mtf_migrated"/>
         </annotations>
@@ -26,36 +26,36 @@
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
         <actionGroup ref="AdminFillIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="integration" value="newIntegration"/>
+            <argument name="integration" value="defaultIntegrationData"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 
         <!-- Assert Success Message -->
         <actionGroup ref="AssertAdminMessageCreateIntegrationEntityActionGroup" stepKey="seeSuccessMessage">
-            <argument name="message" value="The integration '{{newIntegration.name}}' has been saved."/>
+            <argument name="message" value="The integration '{{defaultIntegrationData.name}}' has been saved."/>
             <argument name="messageType" value="success"/>
         </actionGroup>
 
         <!-- Assert Integration In Grid -->
         <actionGroup ref="AdminSearchIntegrationInGridActionGroup" stepKey="findTheIntegration">
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="name" value="{{defaultIntegrationData.name}}"/>
         </actionGroup>
         <actionGroup ref="AssertUpdatedIntegrationEntityInGridActionGroup" stepKey="seeIntegrationEntity">
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="name" value="{{defaultIntegrationData.name}}"/>
         </actionGroup>
 
         <!-- Assert Integration Form -->
         <actionGroup ref="AdminClickEditIntegrationEntityActionGroup" stepKey="clickEditButton"/>
         <actionGroup ref="AssertAdminIntegrationFormActionGroup" stepKey="asserIntegrationForm">
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="name" value="{{defaultIntegrationData.name}}"/>
         </actionGroup>
 
         <!-- Back to the grid -->
-        <actionGroup ref="AdminPressBackButtonOnIntegrationPageActionGroup" stepKey="backToTheGrid"/>
+        <actionGroup ref="AdminOpenIntegrationGridPageActionGroup" stepKey="goToIntegrationGrid"/>
 
         <!-- Delete Created Integration Entity -->
         <actionGroup ref="AdminSearchIntegrationInGridActionGroup" stepKey="searchTheIntegration">
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="name" value="{{defaultIntegrationData.name}}"/>
         </actionGroup>
         <actionGroup ref="AdminDeleteIntegrationEntityActionGroup" stepKey="deleteIntegration"/>
     </test>

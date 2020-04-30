@@ -83,6 +83,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation8" summary="Input fields with single and double quote" ticketId="MAGETWO-16820">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">name-%isolation%&quot; OR &apos;a&quot;=&apos;a</data>
             <data name="integration/data/email" xsi:type="string">-</data>
             <data name="integration/data/endpoint" xsi:type="string">endpoint&quot; OR &apos;a&quot;=&apos;a</data>
@@ -93,6 +94,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation9" summary="Invalid Email: abc.example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">abc.example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -103,6 +105,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation10" summary="Invalid Email: abc.@example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">abc.@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -113,6 +116,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation11" summary="Invalid Email: abc..123@example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">abc..123@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -123,6 +127,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation12" summary="Invalid Email: a@b@c@example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">a@b@c@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -133,6 +138,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation13" summary="Invalid Email: a&quot;b(c)d,e:f;g&amp;lt;h&amp;gt;i[j\k]l@example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">a&quot;b(c)d,e:f;g&lt;h&gt;i[j\k]l@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -143,6 +149,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation14" summary="Invalid Email: this\ still\&quot;not\\allowed@example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">this\ still\&quot;not\\allowed@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -153,6 +160,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation15" summary="Invalid Email: just&quot;not&quot;right@example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">just&quot;not&quot;right@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -163,6 +171,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation16" summary="Invalid Email: this is&quot;not\allowed@example.com" ticketId="MAGETWO-16755">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">this is&quot;not\allowed@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>
@@ -173,6 +182,7 @@
             <constraint name="Magento\Integration\Test\Constraint\AssertIntegrationSuccessSaveMessageNotPresent" />
         </variation>
         <variation name="CreateIntegrationEntityTestVariation17" summary="Incorrect user password entered">
+            <data name="tag" xsi:type="string">mftf_migrated:yes</data>
             <data name="integration/data/name" xsi:type="string">Integration%isolation%</data>
             <data name="integration/data/email" xsi:type="string">test@example.com</data>
             <data name="integration/data/endpoint" xsi:type="string">https://endpoint.com</data>

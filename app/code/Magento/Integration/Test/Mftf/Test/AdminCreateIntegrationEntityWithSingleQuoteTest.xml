@@ -25,15 +25,17 @@
         </after>
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
-        <actionGroup ref="AdminFillAllFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="integration" value="IntegrationWithSingleQuote"/>
-            <argument name="name" value="{{IntegrationWithSingleQuote.name}}"/>
+        <actionGroup ref="AdminFillExtraFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
+            <argument name="name" value="name-'{{defaultIntegrationData.name}}'&apos; OR &apos;a&apos;=&apos;a"/>
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
+            <argument name="email" value="-"/>
+            <argument name="endpoint" value="endpoint&apos; OR &apos;a&apos;=&apos;a"/>
+            <argument name="linkUrl" value="link&apos; OR &apos;a&apos;=&apos;a"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 
         <!-- Assert Url Validation Error Generated -->
-        <actionGroup ref="AssertAdminUrlValidationErrorGeneratedActionGroup" stepKey="assertValidationErrorMessage"/>
+        <actionGroup ref="AssertAdminValidationErrorGeneratedActionGroup" stepKey="assertValidationErrorMessage"/>
 
         <!-- Assert Success Save Message Not Present -->
         <actionGroup ref="AssertAdminIntegrationSuccessSaveMessageNotPresentActionGroup" stepKey="dontSeeSuccessSaveMessage"/>
