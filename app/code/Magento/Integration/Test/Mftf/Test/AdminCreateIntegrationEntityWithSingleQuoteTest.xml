@@ -8,12 +8,12 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="AdminCreateIntegrationEntityVariationFourTest">
+    <test name="AdminCreateIntegrationEntityWithSingleQuoteTest">
         <annotations>
             <features value="Integration"/>
-            <stories value="System Integration Variation Four"/>
-            <title value="Admin system integration Variation Four"/>
-            <description value="Admin Create Integration"/>
+            <stories value="System Integration with single quote entered"/>
+            <title value="Admin system integration with single quote"/>
+            <description value="Admin Create Integration with single quote"/>
             <group value="integration"/>
             <group value="mtf_migrated"/>
         </annotations>
@@ -26,8 +26,8 @@
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
         <actionGroup ref="AdminFillAllFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="integration" value="IntegrationFour"/>
-            <argument name="name" value="{{IntegrationFour.name}}"/>
+            <argument name="integration" value="IntegrationWithSingleQuote"/>
+            <argument name="name" value="{{IntegrationWithSingleQuote.name}}"/>
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>

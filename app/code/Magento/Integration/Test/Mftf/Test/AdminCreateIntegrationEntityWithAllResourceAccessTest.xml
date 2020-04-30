@@ -8,12 +8,12 @@
 
 <tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
-    <test name="AdminCreateIntegrationEntityVariationOneTest">
+    <test name="AdminCreateIntegrationEntityWithAllResourceAccessTest">
         <annotations>
             <features value="Integration"/>
-            <stories value="System Integration Variation One"/>
-            <title value="Admin system integration Variation One"/>
-            <description value="Admin Create Integration"/>
+            <stories value="System Integration with all resource access"/>
+            <title value="Admin system integration with all resource access"/>
+            <description value="Admin Create Integration with all resource access"/>
             <group value="integration"/>
             <group value="mtf_migrated"/>
         </annotations>
@@ -26,33 +26,33 @@
 
         <actionGroup ref="AdminOpenNewIntegrationPageActionGroup" stepKey="navigateToNewIntegrationsPage"/>
         <actionGroup ref="AdminFillAllFieldsForIntegrationFormActionGroup" stepKey="createNewIntegration">
-            <argument name="integration" value="newIntegration"/>
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="integration" value="integrationWithAllResourceAccess"/>
+            <argument name="name" value="{{integrationWithAllResourceAccess.name}}"/>
             <argument name="password" value="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
         </actionGroup>
         <actionGroup ref="AdminSubmitNewIntegrationFormActionGroup" stepKey="submitTheForm"/>
 
         <!-- Assert Success Message -->
         <actionGroup ref="AssertAdminMessageCreateIntegrationEntityActionGroup" stepKey="seeSuccessMessage">
-            <argument name="message" value="The integration '{{newIntegration.name}}' has been saved."/>
+            <argument name="message" value="The integration '{{integrationWithAllResourceAccess.name}}' has been saved."/>
             <argument name="messageType" value="success"/>
         </actionGroup>
 
         <!-- Assert Integration In Grid -->
         <actionGroup ref="AdminSearchIntegrationInGridActionGroup" stepKey="findTheIntegration">
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="name" value="{{integrationWithAllResourceAccess.name}}"/>
         </actionGroup>
         <actionGroup ref="AssertUpdatedIntegrationEntityInGridActionGroup" stepKey="seeIntegrationEntity">
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="name" value="{{integrationWithAllResourceAccess.name}}"/>
         </actionGroup>
 
         <!-- Assert Integration Form -->
         <actionGroup ref="AdminClickEditIntegrationEntityActionGroup" stepKey="clickEditButton"/>
         <actionGroup ref="AssertAdminIntegrationFormActionGroup" stepKey="asserIntegrationForm">
-            <argument name="name" value="{{newIntegration.name}}"/>
-            <argument name="email" value="{{newIntegration.email}}"/>
-            <argument name="endpoint" value="{{newIntegration.endpoint}}"/>
-            <argument name="linkUrl" value="{{newIntegration.linkUrl}}"/>
+            <argument name="name" value="{{integrationWithAllResourceAccess.name}}"/>
+            <argument name="email" value="{{integrationWithAllResourceAccess.email}}"/>
+            <argument name="endpoint" value="{{integrationWithAllResourceAccess.endpoint}}"/>
+            <argument name="linkUrl" value="{{integrationWithAllResourceAccess.linkUrl}}"/>
         </actionGroup>
 
         <!-- Back to the grid -->
@@ -60,7 +60,7 @@
 
         <!-- Delete Created Integration Entity -->
         <actionGroup ref="AdminSearchIntegrationInGridActionGroup" stepKey="searchTheIntegration">
-            <argument name="name" value="{{newIntegration.name}}"/>
+            <argument name="name" value="{{integrationWithAllResourceAccess.name}}"/>
         </actionGroup>
         <actionGroup ref="AdminDeleteIntegrationEntityActionGroup" stepKey="deleteIntegration"/>
     </test>

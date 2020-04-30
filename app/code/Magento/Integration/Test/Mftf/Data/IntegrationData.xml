@@ -13,7 +13,7 @@
         <data key="resourceAccess">All</data>
         <data key="resources">[]</data>
     </entity>
-    <entity name="newIntegration">
+    <entity name="integrationWithAllResourceAccess">
         <data key="name" unique="prefix"> Integration</data>
         <data key="email" unique="prefix">test@example.com</data>
         <data key="endpoint">https://endpoint.com</data>
@@ -26,6 +26,30 @@
         <data key="email">-</data>
         <data key="endpoint">&lt;script&gt;alert(&apos;XSS&apos;)&lt;/script&gt;</data>
         <data key="linkUrl">&lt;script&gt;alert(&apos;XSS&apos;)&lt;/script&gt;</data>
+        <data key="resourceAccess">All</data>
+        <data key="resources">[]</data>
+    </entity>
+    <entity name="IntegrationWithJavascriptTag">
+        <data key="name" unique="prefix">&lt;IMG SRC=javascript:alert(&apos;XSS-%isolation%&apos;)&gt;</data>
+        <data key="email">-</data>
+        <data key="endpoint">&lt;IMG SRC=javascript:alert(&apos;XSS&apos;)&gt;</data>
+        <data key="linkUrl">&lt;IMG SRC=javascript:alert(&apos;XSS&apos;)&gt;</data>
+        <data key="resourceAccess">All</data>
+        <data key="resources">[]</data>
+    </entity>
+    <entity name="IntegrationWithSingleQuote">
+        <data key="name" unique="prefix">name-%isolation%&apos; OR &apos;a&apos;=&apos;a</data>
+        <data key="email">-</data>
+        <data key="endpoint">endpoint&apos; OR &apos;a&apos;=&apos;a</data>
+        <data key="linkUrl">link&apos; OR &apos;a&apos;=&apos;a</data>
+        <data key="resourceAccess">All</data>
+        <data key="resources">[]</data>
+    </entity>
+    <entity name="IntegrationWithDoubleQuote">
+        <data key="name" unique="prefix">name-%isolation%&quot; OR &quot;a&quot;=&quot;a</data>
+        <data key="email">-</data>
+        <data key="endpoint">endpoint&quot; OR &quot;a&quot;=&quot;a</data>
+        <data key="linkUrl">link&quot; OR &quot;a&quot;=&quot;a</data>
         <data key="resourceAccess">All</data>
         <data key="resources">[]</data>
     </entity>
