@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="StorefrontBundleOptionsSummaryTest">
+        <annotations>
+            <stories value="Bundle Summary section updates with the option data"/>
+            <title value="Checking adding of bundle options to the Bundle Summary section"/>
+            <description value="Verifying adding of bundle options to the Bundle Summary section"/>
+            <group value="bundle"/>
+            <group value="mtf_migrated"/>
+        </annotations>
+        <before>
+            <!-- Create simple products for a bundle option -->
+            <createData entity="SimpleProduct2" stepKey="simpleProduct1"/>
+            <createData entity="SimpleProduct2" stepKey="simpleProduct2"/>
+
+            <actionGroup ref="AdminLoginActionGroup" stepKey="login"/>
+        </before>
+        <after>
+            <deleteData createDataKey="simpleProduct1" stepKey="deleteSimpleProduct1"/>
+            <deleteData createDataKey="simpleProduct2" stepKey="deleteSimpleProduct2"/>
+
+            <!--delete created bundle product-->
+            <actionGroup stepKey="deleteProduct1" ref="DeleteProductBySkuActionGroup">
+                <argument name="sku" value="{{BundleProduct.sku}}"/>
+            </actionGroup>
+            <conditionalClick selector="{{AdminProductGridFilterSection.clearFilters}}"
+                              dependentSelector="{{AdminProductGridFilterSection.clearFilters}}" visible="true" stepKey="clickClearFilters"/>
+
+           <actionGroup ref="AdminLogoutActionGroup" stepKey="logout"/>
+        </after>
+
+        <!-- Create new bundle product -->
+        <actionGroup ref="GoToSpecifiedCreateProductPageActionGroup" stepKey="createBundleProduct">
+            <argument name="productType" value="bundle"/>
+        </actionGroup>
+        <actionGroup ref="FillProductNameAndSkuInProductFormActionGroup" stepKey="fillNameAndSku">
+            <argument name="product" value="BundleProduct"/>
+        </actionGroup>
+
+        <!-- Add Option One, a "Drop-down" type option, with two products -->
+        <actionGroup ref="AddBundleOptionWithTwoProductActionGroup" stepKey="addBundleOptionWithTwoProductOne">
+            <argument name="x" value="0"/>
+            <argument name="n" value="1"/>
+            <argument name="prodOneSku" value="$$simpleProduct1.sku$$"/>
+            <argument name="prodTwoSku" value="$$simpleProduct2.sku$$"/>
+            <argument name="optionTitle" value="Option One"/>
+            <argument name="inputType" value="select"/>
+        </actionGroup>
+
+
+        <!-- Add Option Two, a "Drop-down" type option -->
+        <actionGroup ref="AddBundleOptionWithTwoProductActionGroup" stepKey="addBundleOptionWithTwoProductTwo">
+            <argument name="x" value="1"/>
+            <argument name="n" value="2"/>
+            <argument name="prodOneSku" value="$$simpleProduct1.sku$$"/>
+            <argument name="prodTwoSku" value="$$simpleProduct2.sku$$"/>
+            <argument name="optionTitle" value="Option Two"/>
+            <argument name="inputType" value="select"/>
+        </actionGroup>
+
+        <!-- Add Option Three, a "Drop-down" type option -->
+        <actionGroup ref="AddBundleOptionWithTwoProductActionGroup" stepKey="addBundleOptionWithTwoProductsThree">
+            <argument name="x" value="2"/>
+            <argument name="n" value="3"/>
+            <argument name="prodOneSku" value="$$simpleProduct1.sku$$"/>
+            <argument name="prodTwoSku" value="$$simpleProduct2.sku$$"/>
+            <argument name="optionTitle" value="Option Three"/>
+            <argument name="inputType" value="select"/>
+        </actionGroup>
+
+          <!-- Save product form -->
+        <actionGroup ref="SaveProductFormActionGroup" stepKey="clickSaveButton"/>
+
+        <!-- Open product page -->
+        <actionGroup ref="StorefrontOpenProductPageActionGroup" stepKey="openStorefrontProductPage">
+            <argument name="productUrl" value="{{BundleProduct.name}}"/>
+        </actionGroup>
+
+        <!--Click "Customize and Add to Cart" button-->
+        <click selector="{{StorefrontBundledSection.addToCart}}" stepKey="clickCustomize"/>
+
+
+
+    </test>
+</tests>
