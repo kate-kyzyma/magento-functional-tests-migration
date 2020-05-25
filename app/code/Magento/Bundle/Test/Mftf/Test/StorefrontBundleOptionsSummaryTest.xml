@@ -46,7 +46,7 @@
         </actionGroup>
 
         <!-- Add Option One, a "Drop-down" type option, with two products -->
-        <actionGroup ref="AddBundleOptionWithTwoProductActionGroup" stepKey="addBundleOptionWithTwoProductOne">
+        <actionGroup ref="AddBundleOptionWithTwoProductsActionGroup" stepKey="addBundleOptionWithTwoProductOne">
             <argument name="x" value="0"/>
             <argument name="n" value="1"/>
             <argument name="prodOneSku" value="$$simpleProduct1.sku$$"/>
@@ -57,17 +57,17 @@
 
 
         <!-- Add Option Two, a "Drop-down" type option -->
-        <actionGroup ref="AddBundleOptionWithTwoProductActionGroup" stepKey="addBundleOptionWithTwoProductTwo">
+        <actionGroup ref="AddBundleOptionWithTwoProductsActionGroup" stepKey="addBundleOptionWithTwoProductTwo">
             <argument name="x" value="1"/>
             <argument name="n" value="2"/>
-            <argument name="prodOneSku" value="$$simpleProduct1.sku$$"/>
-            <argument name="prodTwoSku" value="$$simpleProduct2.sku$$"/>
+            <argument name="prodOneSku" value="$$simpleProduct2.sku$$"/>
+            <argument name="prodTwoSku" value="$$simpleProduct1.sku$$"/>
             <argument name="optionTitle" value="Option Two"/>
             <argument name="inputType" value="select"/>
         </actionGroup>
 
         <!-- Add Option Three, a "Drop-down" type option -->
-        <actionGroup ref="AddBundleOptionWithTwoProductActionGroup" stepKey="addBundleOptionWithTwoProductsThree">
+        <actionGroup ref="AddBundleOptionWithTwoProductsActionGroup" stepKey="addBundleOptionWithTwoProductsThree">
             <argument name="x" value="2"/>
             <argument name="n" value="3"/>
             <argument name="prodOneSku" value="$$simpleProduct1.sku$$"/>
@@ -87,6 +87,8 @@
         <!--Click "Customize and Add to Cart" button-->
         <click selector="{{StorefrontBundledSection.addToCart}}" stepKey="clickCustomize"/>
 
+        <selectOption selector="select.bundle-option-select" userInput="$$simpleProduct1.name$$ +$123.00" stepKey="selectOption1"/>
+        <selectOption selector="select.bundle-option-select" userInput="$$simpleProduct2.name$$ +$123.00" stepKey="selectOption2"/>
 
 
     </test>
